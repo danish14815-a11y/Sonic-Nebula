@@ -1,0 +1,191 @@
+/* ===== Sonic Nebula Styles ===== */
+
+/* Ambient glow that syncs with music */
+.ambient-glow {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+  filter: blur(120px);
+}
+
+.ambient-glow::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  background: var(--glow-color, #7C3AED);
+  animation: ambientPulse 4s ease-in-out infinite;
+}
+
+.ambient-glow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  background: var(--glow-color-2, #06B6D4);
+  animation: ambientPulse 5s ease-in-out infinite reverse;
+}
+
+@keyframes ambientPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 0.6; }
+}
+
+.ambient-glow.is-playing::before {
+  animation: ambientBeat 0.8s ease-in-out infinite;
+}
+
+.ambient-glow.is-playing::after {
+  animation: ambientBeat 1.2s ease-in-out infinite reverse;
+}
+
+@keyframes ambientBeat {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  25% { transform: scale(1.15); opacity: 0.5; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+  75% { transform: scale(1.1); opacity: 0.45; }
+}
+
+/* Page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(10, 10, 14, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Song card hover */
+.song-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.song-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.85) 100%);
+  pointer-events: none;
+}
+
+.song-card img {
+  transition: transform 0.4s ease-out;
+}
+
+.song-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Track row */
+.track-row {
+  transition: background-color 0.2s ease;
+}
+
+.track-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.track-row.is-active {
+  background: rgba(124, 58, 237, 0.1);
+  border-left: 2px solid #7C3AED;
+}
+
+/* Visualizer bars */
+.visualizer-bar {
+  background: linear-gradient(to top, #06B6D4, #7C3AED);
+  border-radius: 2px;
+  min-height: 2px;
+  transition: height 0.05s linear;
+}
+
+/* Player progress glow */
+.progress-glow {
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.5), 0 0 16px rgba(124, 58, 237, 0.3);
+}
+
+/* Spinning vinyl */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.vinyl-spin {
+  animation: spin-slow 3s linear infinite;
+}
+
+.vinyl-spin.paused {
+  animation-play-state: paused;
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Mono font for timestamps */
+.font-mono-ts {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+}
+
+/* Staggered fade in */
+.stagger-in > * {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeSlideIn 0.4s ease-out forwards;
+}
+
+.stagger-in > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-in > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-in > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-in > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-in > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-in > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-in > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-in > *:nth-child(8) { animation-delay: 0.4s; }
+.stagger-in > *:nth-child(9) { animation-delay: 0.45s; }
+.stagger-in > *:nth-child(10) { animation-delay: 0.5s; }
+
+@keyframes fadeSlideIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar for horizontal scrolling */
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+.scroll-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

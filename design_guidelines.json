@@ -1,0 +1,147 @@
+{
+  "project_name": "Sonic Nebula - Immersive Music Player",
+  "theme_strategy": {
+    "mode": "dark",
+    "archetype": "Archetype 7: Electric & Neon (with Jewel depth)",
+    "vibe": "Atmospheric, Fluid, Deep Space, Bioluminescent",
+    "core_philosophy": "Music is not just heard, it is seen. The UI breathes with the rhythm."
+  },
+  "typography": {
+    "headings": {
+      "family": "Outfit",
+      "weights": ["600", "700"],
+      "usage": "Use for all section titles, artist names, and hero text.",
+      "letter_spacing": "tracking-tight"
+    },
+    "body": {
+      "family": "DM Sans",
+      "weights": ["400", "500"],
+      "usage": "Use for track lists, descriptions, and UI controls.",
+      "letter_spacing": "tracking-normal"
+    },
+    "mono": {
+      "family": "JetBrains Mono",
+      "usage": "Use for time stamps (0:00 / 3:45) and track numbers.",
+      "size": "text-xs"
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": "#020204",
+      "surface": "#0A0A0E",
+      "surface_highlight": "#18181B",
+      "primary": "#7C3AED",
+      "secondary": "#06B6D4",
+      "accent": "#F43F5E",
+      "text_primary": "#FFFFFF",
+      "text_secondary": "#A1A1AA",
+      "border": "rgba(255, 255, 255, 0.08)"
+    },
+    "gradients": {
+      "nebula": "linear-gradient(135deg, #020204 0%, #1a103c 100%)",
+      "glow": "radial-gradient(circle at center, rgba(124, 58, 237, 0.15) 0%, rgba(0, 0, 0, 0) 70%)",
+      "glass": "linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%)"
+    }
+  },
+  "layout_strategy": {
+    "grid_system": "The Bento Grid (Mode A)",
+    "container_style": "Fluid width with max-w-7xl centered",
+    "spacing_scale": "Tailwind Scale (p-6, p-8, p-12)",
+    "glassmorphism": {
+      "enabled": true,
+      "usage": "Sidebar, Bottom Player, Modal Overlays",
+      "classes": "backdrop-blur-xl bg-black/40 border border-white/10"
+    },
+    "z_index_layers": {
+      "base": "0 (Content)",
+      "visualizer": "10 (Behind Now Playing)",
+      "player_bar": "50 (Sticky Bottom)",
+      "modal": "100"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary hover:bg-primary/90 text-white rounded-full px-8 py-3 font-medium transition-all shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)]",
+      "secondary": "bg-white/10 hover:bg-white/20 text-white rounded-full px-6 py-2 backdrop-blur-md transition-colors",
+      "icon": "p-3 rounded-full hover:bg-white/10 text-white/80 hover:text-white transition-colors"
+    },
+    "cards": {
+      "album": "group relative overflow-hidden rounded-2xl bg-surface/50 hover:bg-surface/80 transition-all border border-white/5 hover:border-white/20 aspect-square",
+      "artist": "rounded-full aspect-square object-cover border-2 border-transparent hover:border-primary transition-all",
+      "track_row": "flex items-center gap-4 p-3 rounded-xl hover:bg-white/5 transition-colors group cursor-pointer"
+    },
+    "player": {
+      "container": "fixed bottom-4 left-4 right-4 h-24 rounded-2xl backdrop-blur-2xl bg-black/60 border border-white/10 shadow-2xl flex items-center justify-between px-6 z-50",
+      "progress_bar": "h-1 bg-white/20 rounded-full cursor-pointer overflow-hidden group hover:h-2 transition-all",
+      "progress_fill": "h-full bg-gradient-to-r from-cyan-400 to-purple-500 rounded-full shadow-[0_0_10px_rgba(6,182,212,0.5)]"
+    }
+  },
+  "visual_enhancers": {
+    "lighting_effects": {
+      "description": "The background should subtly pulse with the music's dominant color. Use a large, blurred div behind the main content.",
+      "implementation": "Extract dominant color from album art (or use genre default) and animate opacity/scale based on audio amplitude."
+    },
+    "textures": {
+      "noise": "Overlay a fixed 'noise' texture at 3% opacity over the entire app to reduce banding and add analog feel.",
+      "scanlines": "Optional subtle scanline overlay for the visualizer area."
+    },
+    "motion": {
+      "hover": "scale-105 transition-transform duration-300 ease-out",
+      "page_transition": "opacity-0 translate-y-4 -> opacity-100 translate-y-0 (0.4s ease-out)"
+    }
+  },
+  "assets": {
+    "images": {
+      "hero_bg": "https://images.unsplash.com/photo-1612035724301-ab1e8e83f1ce?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMG5lYnVsYSUyMGRhcmslMjBiYWNrZ3JvdW5kJTIwY3lhbiUyMHB1cnBsZXxlbnwwfHx8fDE3NzIzNzQyNDZ8MA&ixlib=rb-4.1.0&q=85",
+      "fallback_album": "https://images.unsplash.com/photo-1759771963975-8a4885446f1f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njl8MHwxfHNlYXJjaHwyfHxzb3VuZCUyMHdhdmUlMjBhYnN0cmFjdCUyMGRpZ2l0YWwlMjBuZW9ufGVufDB8fHx8MTc3MjM3NDI0N3ww&ixlib=rb-4.1.0&q=85",
+      "vinyl_texture": "https://images.unsplash.com/photo-1584679109691-1d0c852bc5bd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwyfHx2aW55bCUyMHJlY29yZCUyMHRleHR1cmUlMjBibGFja3xlbnwwfHx8fDE3NzIzNzQyNDd8MA&ixlib=rb-4.1.0&q=85"
+    },
+    "icons": {
+      "library": "lucide-react",
+      "instructions": "Use lucide-react for all UI icons (Play, Pause, Skip, Search, Home, Library). Use thin stroke width (1.5px) for elegance."
+    }
+  },
+  "technical_requirements": {
+    "api_endpoint": "https://saavn.sumit.co",
+    "audio_visualizer": {
+      "method": "Web Audio API (AnalyserNode)",
+      "fallback": "CSS animation bars if Web Audio fails",
+      "visuals": "Frequency bars or circular wave"
+    },
+    "routing": {
+      "home": "/",
+      "search": "/search",
+      "album": "/album/:id",
+      "playlist": "/playlist/:id",
+      "artist": "/artist/:id"
+    }
+  },
+  "instructions_to_main_agent": [
+    "1. SETUP: Install 'lucide-react', 'framer-motion', 'zustand' (for player state).",
+    "2. THEME: Force DARK MODE. Do not implement a light mode toggle. The app is nocturnal.",
+    "3. API: Create a service file `api.js` to handle all fetch requests to `https://saavn.sumit.co`. Handle CORS if necessary (or proxy).",
+    "4. PLAYER: The player component must be persistent (Global Layout). Use a Context or Zustand store to manage `currentTrack`, `isPlaying`, `queue`.",
+    "5. VISUALIZER: Create a `Visualizer` component that connects to the `<audio>` element. Use `useRef` to access the audio context.",
+    "6. SEARCH: Implement a debounced search bar in the header. Show results in a dropdown or redirect to /search page.",
+    "7. PERFORMANCE: Lazy load all images. Use `react-lazy-load-image-component` or native `loading='lazy'`.",
+    "8. ERROR HANDLING: If API fails or returns no image, use the `fallback_album` image provided in assets."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy",
+    "Use glass-morphism effects with backdrop filters (12-24px blur)",
+    "You MUST NOT apply universal transition. Eg: 'transition: all'. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms",
+    "You MUST NOT center align the app container, ie do not add '.App { text-align: center; }' in the css file. This disrupts the human natural reading flow of text",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮 for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Main agent relies on these image URLs. Missing categories (especially sponsor logos) = main agent will use placeholder text which is FORBIDDEN",
+    "Prioritize using pre-existing components from src/components/ui when applicable",
+    "Components MUST use named exports (export const ComponentName = ...)",
+    "Use 'sonner' for toasts located in /app/src/components/ui/sonner.tsx"
+  ]
+}
