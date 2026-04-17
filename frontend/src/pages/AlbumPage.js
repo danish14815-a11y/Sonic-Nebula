@@ -5,6 +5,7 @@ import { TrackList } from '@/components/TrackList';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Calendar, Clock, Disc3 } from 'lucide-react';
 import usePlayerStore from '@/store/playerStore';
+import { decodeHtmlEntities } from '@/lib/utils';
 
 const FALLBACK_IMG = 'https://images.unsplash.com/photo-1759771963975-8a4885bc6f1f?w=300&h=300&fit=crop';
 
@@ -84,8 +85,9 @@ export default function AlbumPage() {
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3"
             style={{ fontFamily: 'Outfit' }}
             data-testid="album-title"
-            dangerouslySetInnerHTML={{ __html: album.name || 'Unknown' }}
-          />
+          >
+            {decodeHtmlEntities(album.name) || 'Unknown'}
+          </h1>
           <p className="text-white/50 mb-4">
             {album.artists?.primary?.map((a, i) => (
               <span key={a.id || i}>

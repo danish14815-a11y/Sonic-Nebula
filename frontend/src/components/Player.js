@@ -5,6 +5,7 @@ import {
 import usePlayerStore from '@/store/playerStore';
 import { Visualizer } from '@/components/Visualizer';
 import { Slider } from '@/components/ui/slider';
+import { decodeHtmlEntities } from '@/lib/utils';
 
 const formatTime = (s) => {
   if (!s || isNaN(s)) return '0:00';
@@ -38,8 +39,9 @@ export const Player = () => {
   if (!currentTrack) return null;
 
   const imgUrl = getImageUrl(currentTrack);
-  const artists = currentTrack.artists?.primary?.map(a => a.name).join(', ')
+  const artistsRaw = currentTrack.artists?.primary?.map(a => a.name).join(', ')
     || currentTrack.artist || 'Unknown Artist';
+  const artists = decodeHtmlEntities(artistsRaw);
 
   return (
     <div
@@ -68,8 +70,9 @@ export const Player = () => {
             <p
               data-testid="player-track-name"
               className="text-sm font-medium text-white truncate"
-              dangerouslySetInnerHTML={{ __html: currentTrack.name || 'Unknown' }}
-            />
+            >
+              {decodeHtmlEntities(currentTrack.name) || 'Unknown'}
+            </p>
             <p className="text-xs text-white/50 truncate">{artists}</p>
           </div>
         </div>
