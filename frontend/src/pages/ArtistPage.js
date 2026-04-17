@@ -6,6 +6,7 @@ import { AlbumCard } from '@/components/Cards';
 import { Skeleton } from '@/components/ui/skeleton';
 import { User, Music, Disc } from 'lucide-react';
 import usePlayerStore from '@/store/playerStore';
+import { decodeHtmlEntities } from '@/lib/utils';
 
 const FALLBACK_IMG = 'https://images.unsplash.com/photo-1759771963975-8a4885bc6f1f?w=300&h=300&fit=crop';
 
@@ -104,8 +105,9 @@ export default function ArtistPage() {
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2"
               style={{ fontFamily: 'Outfit' }}
               data-testid="artist-name"
-              dangerouslySetInnerHTML={{ __html: artist.name || 'Unknown' }}
-            />
+            >
+              {decodeHtmlEntities(artist.name) || 'Unknown'}
+            </h1>
             {artist.followerCount && (
               <p className="text-white/40 text-sm">{formatFollowers(artist.followerCount)}</p>
             )}

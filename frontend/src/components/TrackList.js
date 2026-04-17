@@ -1,5 +1,6 @@
 import { Play, Pause, Clock } from 'lucide-react';
 import usePlayerStore from '@/store/playerStore';
+import { decodeHtmlEntities } from '@/lib/utils';
 
 const formatDuration = (s) => {
   if (!s) return '--:--';
@@ -29,8 +30,9 @@ export const TrackList = ({ tracks, showIndex = true }) => {
 
       {tracks.map((track, i) => {
         const isActive = currentTrack?.id === track.id;
-        const artists = track.artists?.primary?.map(a => a.name).join(', ')
+        const artistsRaw = track.artists?.primary?.map(a => a.name).join(', ')
           || track.artist || '';
+        const artists = decodeHtmlEntities(artistsRaw);
         const img = track.image;
         const imgUrl = Array.isArray(img) ? (img.find(x => x.quality === '150x150') || img[0])?.url : '';
 
@@ -73,8 +75,9 @@ export const TrackList = ({ tracks, showIndex = true }) => {
             <div className="flex-1 min-w-0">
               <p
                 className={`text-sm font-medium truncate ${isActive ? 'text-violet-400' : 'text-white'}`}
-                dangerouslySetInnerHTML={{ __html: track.name || 'Unknown' }}
-              />
+              >
+                {decodeHtmlEntities(track.name) || 'Unknown'}
+              </p>
               <p className="text-xs text-white/40 truncate">{artists}</p>
             </div>
 

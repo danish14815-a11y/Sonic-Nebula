@@ -5,6 +5,7 @@ import { TrackList } from '@/components/TrackList';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ListMusic, Clock, Music } from 'lucide-react';
 import usePlayerStore from '@/store/playerStore';
+import { decodeHtmlEntities } from '@/lib/utils';
 
 const FALLBACK_IMG = 'https://images.unsplash.com/photo-1759771963975-8a4885bc6f1f?w=300&h=300&fit=crop';
 
@@ -81,10 +82,11 @@ export default function PlaylistPage() {
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3"
             style={{ fontFamily: 'Outfit' }}
             data-testid="playlist-title"
-            dangerouslySetInnerHTML={{ __html: playlist.name || 'Unknown' }}
-          />
+          >
+            {decodeHtmlEntities(playlist.name) || 'Unknown'}
+          </h1>
           {playlist.description && (
-            <p className="text-white/40 text-sm mb-4 max-w-lg" dangerouslySetInnerHTML={{ __html: playlist.description }} />
+            <p className="text-white/40 text-sm mb-4 max-w-lg">{decodeHtmlEntities(playlist.description)}</p>
           )}
           <div className="flex items-center gap-4 text-sm text-white/30">
             <span className="flex items-center gap-1.5">
